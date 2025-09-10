@@ -1,0 +1,6 @@
+macos_task:
+  container:
+    image: ghcr.io/cirruslabs/macos-runner:sonoma
+  script:
+    - make clean
+    - make test
