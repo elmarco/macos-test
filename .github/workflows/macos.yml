@@ -1,0 +1,29 @@
+name: macOS CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+      
+    - name: Build C library
+      run: make libqemuutil.a
+      
+    - name: Build Rust binary
+      run: make test
+      
+    - name: Run test
+      run: ./test
+      
+    - name: Clean up
+      run: make clean
