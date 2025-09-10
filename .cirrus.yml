@@ -1,6 +1,7 @@
 macos_task:
-  container:
+  macos_instance:
     image: ghcr.io/cirruslabs/macos-runner:sonoma
   script:
+    - brew install gcc make rust
     - make clean
     - make test
